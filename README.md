@@ -1,5 +1,3 @@
-# 1-count()
+# LinkedListProblems
 
-## "Write a Count() function that counts the number of times a given int occurs in a list."
-
-a linked list written in C
+You can find these problems at http://cslibrary.stanford.edu/105/LinkedListProblems.pdf .
