@@ -8,36 +8,6 @@ struct integer // nodes from the linked list
 };
 typedef struct integer Int;
 
-/*int Length (Int *head)
-{
-    int length = 0; // we need it, obviously
-
-    Int *aux1 = (Int *) malloc(sizeof(Int)); // iterating down the list to get it's length
-    if(aux1 == NULL)
-    {
-        printf("Allocation error :/\n");
-        exit(-1);
-    }
-    aux1 = head;
-
-    if(aux1 == NULL) // if the list is empty
-    {
-        return 0;
-    }
-    while(aux1->next != NULL) // if the list is not empty
-    {
-        length++;
-        aux1 = aux1->next;
-    }
-    if(aux1->next == NULL)
-    {
-        length++;
-    }
-
-    free(aux1);
-    return length;
-} */
-
 int Length (Int *head)
 {
     int length = 0; // we need it, obviously
