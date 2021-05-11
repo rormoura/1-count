@@ -19,6 +19,10 @@ int Length (Int *head)
         exit(-1);
     }
     aux1 = head;
+    if(aux1 == NULL) // empty list
+    {
+        return 0;
+    }
     while(aux1->next != NULL)
     {
         length++;
