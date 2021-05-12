@@ -167,14 +167,27 @@ void SortedInsert (Int **head, Int *newnode)
     }
 
     aux = *head;
-    while(aux->n <= newnode->n) // we're gonna insert newnode into aux1 and aux
+    if(aux == NULL) // the list is empty
     {
-        aux1 = aux;
-        aux = aux->next;
+        *head = newnode;
     }
-
-    newnode->next = aux; // inserting the newnode
-    aux1->next = newnode;
+    else // the list has at least 1 node
+    {
+        for(; aux->n <= newnode->n && aux->next != NULL; aux = aux->next) // we're gonna insert newnode between aux1 and aux
+        {                                                                 // or between aux and NULL
+            aux1 = aux;
+        }
+        if(aux->next == NULL) // when newnode needs to be insert in the end of the list
+        {
+            newnode->next = NULL;
+            aux->next = newnode;
+        }
+        else
+        {
+            newnode->next = aux; // inserting the newnode
+            aux1->next = newnode;
+        }
+    }
 
     aux = *head; // printing the new list
     printf("\t\tNew list:\n");
@@ -183,10 +196,10 @@ void SortedInsert (Int **head, Int *newnode)
         printf("Node %d: %d\n", i, aux->n);
         aux = aux->next;
         i++;
-        if(aux->next == NULL)
-        {
-            printf("Node %d: %d\n", i, aux->n);
-        }
+    }
+    if(aux->next == NULL)
+    {
+        printf("Node %d: %d\n", i, aux->n);
     }
 
     aux = NULL; // deallocating the memory we used
@@ -201,7 +214,7 @@ int main ()
     int b = 0; // to adding new nodes
 
     Int *head = (Int *) malloc(sizeof(Int)); // creating the linked list head we're gonna use
-    Int newnode = {7}; // the new node we're gonna insert
+    Int newnode = {7, NULL}; // the new node we're gonna insert
 
     if(head == NULL)
     {
