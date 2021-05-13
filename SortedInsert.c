@@ -173,7 +173,7 @@ void SortedInsert (Int **head, Int *newnode)
     }
     else // the list has at least 1 node
     {
-        for(; aux->n <= newnode->n && aux->next != NULL; aux = aux->next) // we're gonna insert newnode between aux1 and aux
+        for(; aux->n <= newnode->n && aux->next != NULL; aux = aux->next, i++) // we're gonna insert newnode between aux1 and aux
         {                                                                 // or between aux and NULL
             aux1 = aux;
         }
@@ -184,8 +184,16 @@ void SortedInsert (Int **head, Int *newnode)
         }
         else
         {
-            newnode->next = aux; // inserting the newnode
-            aux1->next = newnode;
+            if(i > 0)
+            {
+                newnode->next = aux; // inserting the newnode
+                aux1->next = newnode;
+            }
+            else
+            {
+                newnode->next = aux;
+                *head = newnode;
+            }
         }
     }
 
@@ -214,7 +222,8 @@ int main ()
     int b = 0; // to adding new nodes
 
     Int *head = (Int *) malloc(sizeof(Int)); // creating the linked list head we're gonna use
-    Int newnode = {7, NULL}; // the new node we're gonna insert
+    Int newnode; // the new node we're gonna insert
+    newnode.next = NULL;
 
     if(head == NULL)
     {
@@ -232,6 +241,9 @@ int main ()
     }
 
     QuickSort(head, 0, Length(head)); // sorting the LINKED LIST, it isn't a ARRAY, is a linked list
+
+    printf("Input the integer for the new node: ");
+    scanf("%d", &newnode.n);
 
     SortedInsert(&head, &newnode);
 
